@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etNameEdit"
+        android:hint="Nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/etDescriptionEdit"
+        android:hint="Descripción"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/etWateringEdit"
+        android:hint="Riego (días)"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnUpdatePlant"
+        android:text="Guardar cambios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnDeletePlant"
+        android:text="Eliminar planta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C62828"
+        android:textColor="#FFFFFF"/>
+</LinearLayout>
