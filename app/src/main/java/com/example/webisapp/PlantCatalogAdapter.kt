@@ -1,10 +1,11 @@
 package com.example.webisapp
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.webisapp.databinding.ItemCatalogPlantBinding
 import com.example.webisapp.model.CatalogPlant
 
 class PlantCatalogAdapter(
@@ -12,27 +13,26 @@ class PlantCatalogAdapter(
     private val onClick: (CatalogPlant) -> Unit
 ) : RecyclerView.Adapter<PlantCatalogAdapter.PlantViewHolder>() {
 
-    inner class PlantViewHolder(val binding: ItemCatalogPlantBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class PlantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imgPlant: ImageView = itemView.findViewById(R.id.imgPlant)
+        val tvCommonName: TextView = itemView.findViewById(R.id.tvCommonName)
+        val tvScientificName: TextView = itemView.findViewById(R.id.tvScientificName)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlantViewHolder {
-        val binding = ItemCatalogPlantBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PlantViewHolder(binding)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_catalog_plant, parent, false)
+        return PlantViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
         val plant = plants[position]
-
-        holder.binding.txtCommonName.text = plant.nameCommon
-        holder.binding.txtScientificName.text = plant.nameScientific
-        holder.binding.imgPlant.setImageResource(plant.imageResId)
-
-        // 🌿 Animación sutil de entrada
-        val animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_fade_in)
-        holder.itemView.startAnimation(animation)
+        holder.imgPlant.setImageResource(plant.imageResId)
+        holder.tvCommonName.text = plant.nameCommon
+        holder.tvScientificName.text = plant.nameScientific
 
         holder.itemView.setOnClickListener { onClick(plant) }
     }
 
-    override fun getItemCount() = plants.size
+    override fun getItemCount(): Int = plants.size
 }

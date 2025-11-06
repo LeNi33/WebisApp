@@ -8,12 +8,10 @@
         android:label="WebisApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.WebisApp">
-
+        <activity android:name=".EditPlantActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".AddPlantActivity"/>
-        <activity android:name=".EditPlantActivity" />
-
 
         <activity
             android:name=".PlantsActivity"
