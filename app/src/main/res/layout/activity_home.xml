@@ -1,17 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5"
     tools:context=".HomeActivity">
 
+    <!-- 🔹 Botones superiores -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btnMyPlants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌱 Mis Plantas"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="👤 Iniciar Sesión" />
+    </LinearLayout>
+
+    <!-- 🔹 Lista de tarjetas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCatalog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="8dp"
         android:clipToPadding="false"
-        android:padding="4dp"
         tools:listitem="@layout/item_catalog_plant" />
-
 </LinearLayout>
