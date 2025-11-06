@@ -31,7 +31,15 @@ class PlantCatalogAdapter(
         holder.tvCommonName.text = plant.nameCommon
         holder.tvScientificName.text = plant.nameScientific
 
+        // 🎯 Click a la tarjeta
         holder.itemView.setOnClickListener { onClick(plant) }
+
+        // 💫 Animación de entrada (fade-in)
+        holder.itemView.alpha = 0f
+        holder.itemView.animate()
+            .alpha(1f)
+            .setDuration(500)
+            .start()
     }
 
     override fun getItemCount(): Int = plants.size

@@ -20,13 +20,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="🌱 Mis Plantas"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/teal_700"/>
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="👤 Iniciar Sesión" />
+            android:text="👤 Iniciar Sesión"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/purple_500"/>
     </LinearLayout>
 
     <!-- 🔹 Lista de tarjetas -->

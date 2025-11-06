@@ -16,16 +16,16 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 🔹 Configurar el RecyclerView con las 9 plantas del catálogo
+        // 🔹 Configuración del catálogo con fotos
         val adapter = PlantCatalogAdapter(PlantCatalog.plants) { plant ->
-            // Ahora al presionar una tarjeta, solo muestra detalles (sin volver al home)
-            val intent = Intent(this, PlantDetailActivity::class.java)
-            intent.putExtra("nameCommon", plant.nameCommon)
-            intent.putExtra("nameScientific", plant.nameScientific)
-            intent.putExtra("description", plant.description)
-            intent.putExtra("watering", plant.watering)
-            intent.putExtra("season", plant.season)
-            intent.putExtra("imageResId", plant.imageResId)
+            val intent = Intent(this, PlantDetailActivity::class.java).apply {
+                putExtra("nameCommon", plant.nameCommon)
+                putExtra("nameScientific", plant.nameScientific)
+                putExtra("description", plant.description)
+                putExtra("watering", plant.watering)
+                putExtra("season", plant.season)
+                putExtra("imageResId", plant.imageResId)
+            }
             startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
@@ -33,14 +33,18 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerCatalog.layoutManager = GridLayoutManager(this, 3)
         binding.recyclerCatalog.adapter = adapter
 
-        // 🔹 Botón para ir al CRUD
+        // 🔹 Botón para abrir la pantalla del CRUD (Mis Plantas)
         binding.btnMyPlants.setOnClickListener {
-            startActivity(Intent(this, PlantsActivity::class.java))
+            val intent = Intent(this, PlantsActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
         }
 
-        // 🔹 Botón para ir al Login
+        // 🔹 Botón para abrir la pantalla de Login
         binding.btnLogin.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }
 }
