@@ -2,6 +2,8 @@ package com.example.webisapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.net.Uri
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.webisapp.databinding.ActivityHomeBinding
@@ -15,6 +17,18 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val imageUri = intent.getStringExtra("imageUri")
+        val email = intent.getStringExtra("email")
+
+        // 🔹 Si hay usuario logueado, ocultar botón de login
+        if (!email.isNullOrEmpty()) {
+            binding.btnLogin.visibility = View.GONE
+        }
+
+        imageUri?.let {
+            binding.imageUserProfile.setImageURI(Uri.parse(it))
+        }
 
         // 🔹 Configuración del catálogo con fotos
         val adapter = PlantCatalogAdapter(PlantCatalog.plants) { plant ->
