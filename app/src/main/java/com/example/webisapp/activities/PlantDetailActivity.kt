@@ -29,10 +29,10 @@ class PlantDetailActivity : AppCompatActivity() {
         binding = ActivityPlantDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Crear el canal de notificación (Android 8+)
+
         createNotificationChannel()
 
-        // Pedir permiso de notificaciones si es Android 13+
+
         requestNotificationPermissionIfNeeded()
 
         val plantName = intent.getStringExtra("nameCommon") ?: "Planta"
@@ -45,19 +45,19 @@ class PlantDetailActivity : AppCompatActivity() {
         binding.txtSeason.text = intent.getStringExtra("season")
         if (imageResId != 0) binding.imgPlant.setImageResource(imageResId)
 
-        // Botón para programar notificación diaria
+
         binding.btnActivateReminder.setOnClickListener {
             scheduleDailyNotification(plantName)
             Toast.makeText(this, "Recordatorio activado ✅", Toast.LENGTH_SHORT).show()
         }
 
-        // Botón de prueba (dispara notificación inmediata)
+
         binding.btnTestReminder.setOnClickListener {
             sendImmediateNotification(plantName)
         }
     }
 
-    // Crear canal de notificación
+
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Recordatorios de plantas"
@@ -72,7 +72,7 @@ class PlantDetailActivity : AppCompatActivity() {
         }
     }
 
-    // Pedir permiso de notificaciones (Android 13+)
+
     private fun requestNotificationPermissionIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val permissionStatus = ContextCompat.checkSelfPermission(

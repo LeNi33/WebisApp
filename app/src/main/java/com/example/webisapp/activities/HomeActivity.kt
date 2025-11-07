@@ -21,7 +21,7 @@ class HomeActivity : AppCompatActivity() {
         val imageUri = intent.getStringExtra("imageUri")
         val email = intent.getStringExtra("email")
 
-        // 🔹 Si hay usuario logueado, ocultar botón de login
+
         if (!email.isNullOrEmpty()) {
             binding.btnLogin.visibility = View.GONE
         }
@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
             binding.imageUserProfile.setImageURI(Uri.parse(it))
         }
 
-        // 🔹 Configuración del catálogo con fotos
+
         val adapter = PlantCatalogAdapter(PlantCatalog.plants) { plant ->
             val intent = Intent(this, PlantDetailActivity::class.java).apply {
                 putExtra("nameCommon", plant.nameCommon)
@@ -47,14 +47,14 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerCatalog.layoutManager = GridLayoutManager(this, 3)
         binding.recyclerCatalog.adapter = adapter
 
-        // 🔹 Botón para abrir la pantalla del CRUD (Mis Plantas)
+
         binding.btnMyPlants.setOnClickListener {
             val intent = Intent(this, PlantsActivity::class.java)
             startActivity(intent)
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
         }
 
-        // 🔹 Botón para abrir la pantalla de Login
+
         binding.btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

@@ -13,14 +13,13 @@ class PlantNotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val plantName = intent.getStringExtra("plantName") ?: "Planta"
 
-        // ✅ Verificar permiso POST_NOTIFICATIONS
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             val permission = ContextCompat.checkSelfPermission(
                 context,
                 android.Manifest.permission.POST_NOTIFICATIONS
             )
             if (permission != PackageManager.PERMISSION_GRANTED) {
-                // No se tiene permiso, no se envía notificación
+
                 return
             }
         }

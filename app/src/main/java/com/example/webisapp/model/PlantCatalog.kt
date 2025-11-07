@@ -8,12 +8,12 @@ data class CatalogPlant(
     val description: String,
     val watering: String,
     val season: String,
-    val imageResId: Int // aquí se guarda el recurso de imagen (R.drawable.xxx)
+    val imageResId: Int
 )
 
 object PlantCatalog {
 
-    // 🔹 Aquí defines tus 9 plantas fijas
+
     val plants = listOf(
         CatalogPlant("Guisantes","Pisum sativum","Los guisantes son plantas trepadoras anuales que producen vainas comestibles con semillas ricas en proteínas. Son fáciles de cultivar y mejoran el suelo al fijar nitrógeno.","Riego moderado, manteniendo el sustrato ligeramente húmedo sin encharcar.","Se siembran en primavera o finales de invierno, prefieren climas templados.",R.drawable.guisantes),
         CatalogPlant( "Girasol","Helianthus annuus","El girasol es una planta anual conocida por seguir la trayectoria del sol. Produce grandes flores amarillas y semillas comestibles ricas en aceites saludables.","Riego frecuente pero sin exceso; mantener el suelo húmedo especialmente durante la floración.","Se siembra en primavera y florece en verano, prefiriendo climas cálidos y soleados.",R.drawable.girasol),

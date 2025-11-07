@@ -7,7 +7,7 @@
     android:background="#F5F5F5"
     tools:context=".HomeActivity">
 
-    <!-- 🔹 Botones superiores -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:backgroundTint="@color/purple_500"/>
     </LinearLayout>
 
-    <!-- 🔹 Lista de tarjetas -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCatalog"
         android:layout_width="match_parent"

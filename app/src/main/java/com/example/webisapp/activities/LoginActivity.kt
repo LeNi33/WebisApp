@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // ✅ Corrutina para Room
+
             lifecycleScope.launch {
                 val user = userDao.getUser(email, password)
 

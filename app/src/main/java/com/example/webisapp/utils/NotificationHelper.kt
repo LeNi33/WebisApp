@@ -22,7 +22,7 @@ object NotificationHelper {
         }
     }
 
-    // Muestra una notificación inmediata (demo)
+
     fun showNotificationNow(context: Context, title: String, body: String) {
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notif = NotificationCompat.Builder(context, CHANNEL_ID)
@@ -34,8 +34,7 @@ object NotificationHelper {
         nm.notify((System.currentTimeMillis() % 10000).toInt(), notif)
     }
 
-    // Ejemplo simple de programar alarma (para que hagas pruebas).
-    // Mantener simple: pide AlarmManager que dispare PendingIntent que tu app reciba (no implementado aquí).
+
     fun scheduleReminder(context: Context, whenMillis: Long, requestCode: Int, intent: Intent) {
         val am = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val pi = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_IMMUTABLE)

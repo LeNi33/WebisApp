@@ -13,7 +13,7 @@ app:cardElevation="4dp">
     android:padding="8dp"
     android:gravity="center">
 
-    <!-- 🌿 Imagen de la planta -->
+
     <ImageView
         android:id="@+id/imgPlant"
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@ app:cardElevation="4dp">
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_foreground" />
 
-    <!-- 🌿 Nombre común -->
+
     <TextView
         android:id="@+id/tvCommonName"
         android:layout_width="wrap_content"
@@ -31,7 +31,7 @@ app:cardElevation="4dp">
         android:textSize="16sp"
         android:layout_marginTop="6dp" />
 
-    <!-- 🌿 Nombre científico -->
+
     <TextView
         android:id="@+id/tvScientificName"
         android:layout_width="wrap_content"

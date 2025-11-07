@@ -22,20 +22,20 @@ class EditPlantActivity : AppCompatActivity() {
         val etWatering = findViewById<EditText>(R.id.etWatering)
         val btnSave = findViewById<Button>(R.id.btnSavePlant)
 
-        // ✅ Recibir datos del intent
+
         val id = intent.getIntExtra("id", -1)
         val name = intent.getStringExtra("name") ?: ""
         val description = intent.getStringExtra("description") ?: ""
         val watering = intent.getStringExtra("watering") ?: ""
 
-        // ✅ Si el ID no existe, salir
+
         if (id == -1) {
             Toast.makeText(this, "Error al cargar planta", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        // ✅ Llenar campos
+
         etName.setText(name)
         etDescription.setText(description)
         etWatering.setText(watering)

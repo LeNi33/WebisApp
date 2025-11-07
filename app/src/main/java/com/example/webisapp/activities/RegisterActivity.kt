@@ -71,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
                 )
                 userDao.insertUser(user)
 
-                // Esto se ejecuta en la UI
+
                 runOnUiThread {
                     Toast.makeText(this@RegisterActivity, "Registro exitoso ✅", Toast.LENGTH_SHORT).show()
                     finish()
