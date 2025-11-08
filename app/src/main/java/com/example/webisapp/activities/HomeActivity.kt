@@ -2,6 +2,8 @@ package com.example.webisapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.net.Uri
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.webisapp.databinding.ActivityHomeBinding
@@ -16,7 +18,19 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 🔹 Configuración del catálogo con fotos
+        val imageUri = intent.getStringExtra("imageUri")
+        val email = intent.getStringExtra("email")
+
+
+        if (!email.isNullOrEmpty()) {
+            binding.btnLogin.visibility = View.GONE
+        }
+
+        imageUri?.let {
+            binding.imageUserProfile.setImageURI(Uri.parse(it))
+        }
+
+
         val adapter = PlantCatalogAdapter(PlantCatalog.plants) { plant ->
             val intent = Intent(this, PlantDetailActivity::class.java).apply {
                 putExtra("nameCommon", plant.nameCommon)
@@ -33,14 +47,14 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerCatalog.layoutManager = GridLayoutManager(this, 3)
         binding.recyclerCatalog.adapter = adapter
 
-        // 🔹 Botón para abrir la pantalla del CRUD (Mis Plantas)
+
         binding.btnMyPlants.setOnClickListener {
             val intent = Intent(this, PlantsActivity::class.java)
             startActivity(intent)
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
         }
 
-        // 🔹 Botón para abrir la pantalla de Login
+
         binding.btnLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

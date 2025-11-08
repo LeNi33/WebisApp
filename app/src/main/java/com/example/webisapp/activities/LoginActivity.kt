@@ -1,11 +1,14 @@
 package com.example.webisapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.example.webisapp.data.AppDatabase
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,15 +21,44 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnGoRegister = findViewById<Button>(R.id.btnGoRegister)
 
+        val db = AppDatabase.getDatabase(this)
+        val userDao = db.userDao()
+
         btnLogin.setOnClickListener {
-            val email = edtEmail.text.toString()
-            val password = edtPassword.text.toString()
+            val email = edtEmail.text.toString().trim()
+            val password = edtPassword.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Complete los campos", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, HomeActivity::class.java))
+                return@setOnClickListener
+            }
+
+
+            lifecycleScope.launch {
+                val user = userDao.getUser(email, password)
+
+                runOnUiThread {
+                    if (user != null) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Bienvenido ${user.email}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        val intent = Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                            putExtra("email", user.email)
+                            putExtra("imageUri", user.imageUri)
+                        }
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Usuario o contraseña incorrectos",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         }
 
